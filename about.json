@@ -1,17 +1,5 @@
 {
-  "name": "Misc/HTML+CSS",
-  "component": true,
-  "license_url": null,
-  "about_url": null,
-  "authors": null,
-  "theme_version": null,
-  "minimum_discourse_version": null,
-  "maximum_discourse_version": null,
-  "assets": {
-  },
-  "color_schemes": {
-  },
-  "modifiers": {
-  },
-  "learn_more": "https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966"
+	"name": "Category List with Banners",
+	"component": true,
+	"authors": "Agent BUB"
 }
