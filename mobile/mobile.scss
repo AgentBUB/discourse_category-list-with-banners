@@ -1,0 +1,22 @@
+.navigation-categories {
+    .category-thing {
+        margin-left: -10px;
+        margin-right: -10px;
+        width: calc(100% + 20px);
+
+        & > .category-list {
+            padding-left: 10px;
+            /*padding-right: 10px;*/
+        }
+        
+        &.core > .category-list {
+            display: block;
+            padding-top: 0px;
+            background-size: 0px 0px;
+            
+            &:before {
+                content: '';
+            }
+        }
+    }
+}
