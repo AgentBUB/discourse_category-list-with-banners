@@ -1,129 +1,134 @@
 .toggle-hide-devs-btn.dis {
-    background-color: rgb(221, 93, 93);
-    color: #e9e9e9!important;
+	background-color: rgb(221, 93, 93);
+	color: #e9e9e9 !important;
 }
 .toggle-hide-devs-btn {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 .topic-post .topic-body {
-    z-index: 1;
+	z-index: 1;
 }
 
 .category-logo img {
-    max-width: 64px !important;
-    max-height: 64px !important;
+	max-width: 64px !important;
+	max-height: 64px !important;
 }
 
 .categories-root {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-    & > div {
-        width: calc(50% - 10px);
-    }
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	& > div {
+		width: calc(50% - 10px);
+	}
 }
 
 .navigation-categories {
-    .category-thing {
-        & > .category-list {
-            display: block;
-            padding-top: 150px;
-            background-repeat: no-repeat;
-            background-size: 100% 150px;
-            position: relative;
-            width: 100%;
-            
-            &:before {
-                position: absolute;
-                top: calc(150px - 50px - 25px);
-                left: 13px;
-                color: #fff;
-                text-shadow: #000 0px 0px 4px;
-                font-size: 50px;
-            }
-            
-            thead {
-                display: none;
-            }
+	.category-thing {
+		& > .category-list {
+			display: block;
+			padding-top: 150px;
+			background-repeat: no-repeat;
+			background-size: 100% 150px;
+			position: relative;
+			width: 100%;
 
-            tbody {
-                position: static;
-                display: table;
-                width: 100%;
-                table-layout: fixed;
-                box-sizing: border-box;
-            }
-            
-            div {
-                position: static;
-            }
-        }
-        
-        &.redm > .category-list {
-            &:before {
-                content: 'RedM';
-            }
-            
-            background-image: url(https://forum.cfx.re/uploads/default/original/4X/c/c/6/cc638f41d92954ea37d975aeb119a8df95b55202.jpeg);
-        }
-        
-        &.fivem > .category-list {
-            &:before {
-                content: 'FiveM';
-            }
-            
-            background-image: url(https://i.imgur.com/1YZTip0.png);
-        }
+			&:before {
+				position: absolute;
+				top: calc(150px - 50px - 25px);
+				left: 13px;
+				color: #fff;
+				text-shadow: #000 0px 0px 4px;
+				font-size: 50px;
+			}
 
-        &.arma > .category-list {
-            &:before {
-                content: 'Arma';
-            }
-            
-            background-image: url(https://i.imgur.com/6dAFFPS.png);
-        }
+			thead {
+				display: none;
+			}
 
-        &.minecraft > .category-list {
-            &:before {
-                content: 'Minecraft';
-            }
-            
-            background-image: url(https://i.imgur.com/TjAqkpL.png);
-        }
+			tbody {
+				position: static;
+				display: table;
+				width: 100%;
+				table-layout: fixed;
+				box-sizing: border-box;
+			}
 
-        &.core > .category-list {
-            &:before {
-                content: 'Bacta Network';
-            }
-            
+			div {
+				position: static;
+			}
+		}
 
-            background-image: url(https://bactanetwork.com/img/Backgrounds/1.jpg);
-        }
-        
-        &.private > .category-list {
-            &:before {
-                content: 'Staff';
-            }
-            
-            background-image: linear-gradient(to bottom, #000 0%, #111 100%);
-        }
-    }
+		&.redm > .category-list {
+			&:before {
+				content: 'RedM';
+			}
+
+			background-image: url(https://forum.cfx.re/uploads/default/original/4X/c/c/6/cc638f41d92954ea37d975aeb119a8df95b55202.jpeg);
+		}
+
+		&.fivem > .category-list {
+			&:before {
+				content: 'FiveM';
+			}
+
+			background-image: url(https://i.imgur.com/1YZTip0.png);
+		}
+
+		&.arma > .category-list {
+			&:before {
+				content: 'Arma';
+			}
+
+			background-image: url(https://i.imgur.com/6dAFFPS.png);
+		}
+
+		&.minecraft > .category-list {
+			&:before {
+				content: 'Minecraft';
+			}
+
+			background-image: url(https://i.imgur.com/TjAqkpL.png);
+		}
+
+		&.core > .category-list {
+			&:before {
+				content: 'Bacta Network';
+			}
+
+			background-image: url(https://bactanetwork.com/img/Backgrounds/1.jpg);
+		}
+
+		&.private > .category-list {
+			&:before {
+				content: 'Staff';
+			}
+
+			background-image: linear-gradient(to bottom, #000 0%, #111 100%);
+		}
+	}
 }
 
-.topic-list-item[class*="category-redm-"] {
-    .link-bottom-line, .topic-item-stats {
-        border-left: 4px solid #a00202;
-        padding-left: 4px;
-    }
+.topic-list-item[class*='category-redm-'] {
+	.link-bottom-line,
+	.topic-item-stats {
+		border-left: 4px solid #a00202;
+		padding-left: 4px;
+	}
 }
 
 .topic-list-item {
-    &[class*="category-server-development"], &[class*="category-development"], &[class*="category-general"], &[class*="category-technical"], &[class*="category-announcements"] {
-        .link-bottom-line, .topic-item-stats {
-            border-left: 4px solid #FFA76D;
-            padding-left: 4px;
-        }
-    }
+	&[class*='category-server-development'],
+	&[class*='category-development'],
+	&[class*='category-general'],
+	&[class*='category-technical'],
+	&[class*='category-announcements'] {
+		.link-bottom-line,
+		.topic-item-stats {
+			border-left: 4px solid #ffa76d;
+			padding-left: 4px;
+		}
+	}
 }

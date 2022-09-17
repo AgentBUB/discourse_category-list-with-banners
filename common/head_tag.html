@@ -1,97 +1,115 @@
 <meta name="google" content="notranslate" />
 
-<script type='text/x-handlebars' data-template-name='components/category-title-link'>
-<a href={{category.url}}>
-  {{#if category.uploaded_logo.url}}
-    <div>{{cdn-img src=category.uploaded_logo.url class="category-logo"}}</div>
-  {{/if}}
-</a>
+<script
+	type="text/x-handlebars"
+	data-template-name="components/category-title-link"
+>
+	<a href={{category.url}}>
+	  {{#if category.uploaded_logo.url}}
+	    <div>{{cdn-img src=category.uploaded_logo.url class="category-logo"}}</div>
+	  {{/if}}
+	</a>
 
-<a href={{category.url}}>
-  {{#if category.read_restricted}}
-    {{fa-icon 'lock'}}
-  {{/if}}
+	<a href={{category.url}}>
+	  {{#if category.read_restricted}}
+	    {{fa-icon 'lock'}}
+	  {{/if}}
 
-  <span class="category-name">{{category.name}}</span>
-</a>
+	  <span class="category-name">{{category.name}}</span>
+	</a>
 </script>
 
-<script type='text/x-handlebars' data-template-name='components/categories-with-featured-topics'>
-<div class="category-thing core">
-{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+<script
+	type="text/x-handlebars"
+	data-template-name="components/categories-with-featured-topics"
+>
+	<div class="category-thing core">
+	{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing minecraft">
-{{categories-only categories=(filter-minecraft categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing minecraft">
+	{{categories-only categories=(filter-minecraft categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing arma">
-{{categories-only categories=(filter-arma categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing arma">
+	{{categories-only categories=(filter-arma categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing fivem">
-{{categories-only categories=(filter-fivem categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing fivem">
+	{{categories-only categories=(filter-fivem categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing redm">
-{{categories-only categories=(filter-redm categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing redm">
+	{{categories-only categories=(filter-redm categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing private">
-{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing private">
+	{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 </script>
 
-<script type='text/x-handlebars' data-template-name='mobile/components/categories-with-featured-topics'>
-<div class="category-thing core">
-{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+<script
+	type="text/x-handlebars"
+	data-template-name="mobile/components/categories-with-featured-topics"
+>
+	<div class="category-thing core">
+	{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing minecraft">
-{{categories-only categories=(filter-minecraft categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing minecraft">
+	{{categories-only categories=(filter-minecraft categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing arma">
-{{categories-only categories=(filter-arma categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing arma">
+	{{categories-only categories=(filter-arma categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing fivem">
-{{categories-only categories=(filter-fivem categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing fivem">
+	{{categories-only categories=(filter-fivem categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing redm">
-{{categories-only categories=(filter-redm categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing redm">
+	{{categories-only categories=(filter-redm categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 
-<div class="category-thing private">
-{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-</div>
+	<div class="category-thing private">
+	{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
 </script>
 
 <script>
-const { registerUnbound } = require('discourse-common/lib/helpers');
+	const { registerUnbound } = require('discourse-common/lib/helpers');
 
-registerUnbound('filter-core', (categories) => {
-   return categories.filter(a => !a.slug.match(/^redm-/) && !a.name.match(/^fivem/i) && !a.name.match(/^minecraft/i) && !a.name.match(/^arma/i) && !a.read_restricted);
-});
+	registerUnbound('filter-core', (categories) => {
+		return categories.filter(
+			(a) =>
+				!a.slug.match(/^redm-/) &&
+				!a.name.match(/^fivem/i) &&
+				!a.name.match(/^minecraft/i) &&
+				!a.name.match(/^arma/i) &&
+				!a.read_restricted
+		);
+	});
 
-registerUnbound('filter-private', (categories) => {
-   return categories.filter(a => a.read_restricted && !a.slug.match(/^redm-/)); 
-});
+	registerUnbound('filter-private', (categories) => {
+		return categories.filter(
+			(a) => a.read_restricted && !a.slug.match(/^redm-/)
+		);
+	});
 
-registerUnbound('filter-minecraft', (categories) => {
-   return categories.filter(a => a.name.match(/^minecraft/i));
-});
+	registerUnbound('filter-minecraft', (categories) => {
+		return categories.filter((a) => a.name.match(/^minecraft/i));
+	});
 
-registerUnbound('filter-arma', (categories) => {
-   return categories.filter(a => a.name.match(/^arma/i));
-});
+	registerUnbound('filter-arma', (categories) => {
+		return categories.filter((a) => a.name.match(/^arma/i));
+	});
 
-registerUnbound('filter-fivem', (categories) => {
-   return categories.filter(a => a.name.match(/^fivem/i));
-});
+	registerUnbound('filter-fivem', (categories) => {
+		return categories.filter((a) => a.name.match(/^fivem/i));
+	});
 
-registerUnbound('filter-redm', (categories) => {
-   return categories.filter(a => a.slug.match(/^redm-/));
-});
+	registerUnbound('filter-redm', (categories) => {
+		return categories.filter((a) => a.slug.match(/^redm-/));
+	});
 </script>
