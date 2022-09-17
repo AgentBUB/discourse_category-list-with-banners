@@ -95,16 +95,16 @@
 
         &.core > .category-list {
             &:before {
-                content: 'TheGoldApple';
+                content: 'Bacta Network';
             }
             
 
-            background-image: url(https://i.imgur.com/sh6EO5D.png);
+            background-image: url(https://bactanetwork.com/img/Backgrounds/1.jpg);
         }
         
         &.private > .category-list {
             &:before {
-                content: 'Private';
+                content: 'Staff';
             }
             
             background-image: linear-gradient(to bottom, #000 0%, #111 100%);
