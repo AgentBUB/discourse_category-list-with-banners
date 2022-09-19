@@ -59,6 +59,7 @@
 	registerUnbound('filter-core', (categories) => {
 		return categories.filter(
 			(a) =>
+				console.log(a) &&
 				a.slug.match('info') &&
 				a.slug.match(/^support/) &&
 				a.slug.match(/^bug-reports/) &&
