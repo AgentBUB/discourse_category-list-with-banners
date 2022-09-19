@@ -27,20 +27,8 @@
 	{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
-	<div class="category-thing minecraft">
-	{{categories-only categories=(filter-minecraft categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
-	<div class="category-thing arma">
-	{{categories-only categories=(filter-arma categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
-	<div class="category-thing fivem">
-	{{categories-only categories=(filter-fivem categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
-	<div class="category-thing redm">
-	{{categories-only categories=(filter-redm categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	<div class="category-thing community">
+	{{categories-only categories=(filter-community categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
@@ -56,20 +44,8 @@
 	{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
-	<div class="category-thing minecraft">
-	{{categories-only categories=(filter-minecraft categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
-	<div class="category-thing arma">
-	{{categories-only categories=(filter-arma categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
-	<div class="category-thing fivem">
-	{{categories-only categories=(filter-fivem categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
-	<div class="category-thing redm">
-	{{categories-only categories=(filter-redm categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	<div class="category-thing community">
+	{{categories-only categories=(filter-community categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
@@ -83,33 +59,25 @@
 	registerUnbound('filter-core', (categories) => {
 		return categories.filter(
 			(a) =>
-				!a.slug.match(/^redm-/) &&
-				!a.name.match(/^fivem/i) &&
-				!a.name.match(/^minecraft/i) &&
-				!a.name.match(/^arma/i) &&
-				!a.read_restricted
+				!a.slug.match(/^info/) &&
+				!a.slug.match(/^support/) &&
+				!a.slug.match(/^bug-reports/) &&
+				!a.slug.match(/^complaints/)
 		);
 	});
 
 	registerUnbound('filter-private', (categories) => {
 		return categories.filter(
-			(a) => a.read_restricted && !a.slug.match(/^redm-/)
+			(a) => a.read_restricted && !a.slug.match(/^staff/)
 		);
 	});
 
-	registerUnbound('filter-minecraft', (categories) => {
-		return categories.filter((a) => a.name.match(/^minecraft/i));
-	});
-
-	registerUnbound('filter-arma', (categories) => {
-		return categories.filter((a) => a.name.match(/^arma/i));
-	});
-
-	registerUnbound('filter-fivem', (categories) => {
-		return categories.filter((a) => a.name.match(/^fivem/i));
-	});
-
-	registerUnbound('filter-redm', (categories) => {
-		return categories.filter((a) => a.slug.match(/^redm-/));
+	registerUnbound('filter-community', (categories) => {
+		return categories.filter(
+			(a) =>
+				a.slug.match(/^general/i) &&
+				a.slug.match(/^off-topic/i) &&
+				!a.read_restricted
+		);
 	});
 </script>

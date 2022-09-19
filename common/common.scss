@@ -61,36 +61,12 @@
 			}
 		}
 
-		&.redm > .category-list {
+		&.community > .category-list {
 			&:before {
-				content: 'RedM';
-			}
-
-			background-image: url(https://forum.cfx.re/uploads/default/original/4X/c/c/6/cc638f41d92954ea37d975aeb119a8df95b55202.jpeg);
-		}
-
-		&.fivem > .category-list {
-			&:before {
-				content: 'FiveM';
+				content: 'Community';
 			}
 
 			background-image: url(https://i.imgur.com/1YZTip0.png);
-		}
-
-		&.arma > .category-list {
-			&:before {
-				content: 'Arma';
-			}
-
-			background-image: url(https://i.imgur.com/6dAFFPS.png);
-		}
-
-		&.minecraft > .category-list {
-			&:before {
-				content: 'Minecraft';
-			}
-
-			background-image: url(https://i.imgur.com/TjAqkpL.png);
 		}
 
 		&.core > .category-list {
