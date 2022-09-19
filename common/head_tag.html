@@ -59,16 +59,16 @@
 	registerUnbound('filter-core', (categories) => {
 		return categories.filter(
 			(a) =>
-				!a.slug.match(/^info/) &&
-				!a.slug.match(/^support/) &&
-				!a.slug.match(/^bug-reports/) &&
-				!a.slug.match(/^complaints/)
+				a.slug.match(/^info/) &&
+				a.slug.match(/^support/) &&
+				a.slug.match(/^bug-reports/) &&
+				a.slug.match(/^complaints/)
 		);
 	});
 
 	registerUnbound('filter-private', (categories) => {
 		return categories.filter(
-			(a) => a.read_restricted && !a.slug.match(/^staff/)
+			(a) => a.read_restricted && a.slug.match(/^staff/)
 		);
 	});
 
