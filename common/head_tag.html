@@ -67,17 +67,12 @@
 	});
 
 	registerUnbound('filter-private', (categories) => {
-		return categories.filter(
-			(a) => a.read_restricted || a.slug.match(/^staff/)
-		);
+		return categories.filter((a) => a.slug.match(/^staff/));
 	});
 
 	registerUnbound('filter-community', (categories) => {
 		return categories.filter(
-			(a) =>
-				a.slug.match(/^general/i) ||
-				a.slug.match(/^off-topic/i) ||
-				!a.read_restricted
+			(a) => a.slug.match(/^general/i) || a.slug.match(/^off-topic/i)
 		);
 	});
 </script>
