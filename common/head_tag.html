@@ -62,7 +62,9 @@
 				a.slug.match(/^info/) ||
 				a.slug.match(/^support/) ||
 				a.slug.match(/^bug-reports/) ||
-				a.slug.match(/^complaints/)
+				a.slug.match(/^complaints/) ||
+				a.slug.match(/^general/i) ||
+				a.slug.match(/^off-topic/i)
 		);
 	});
 
@@ -71,8 +73,6 @@
 	});
 
 	registerUnbound('filter-community', (categories) => {
-		return categories.filter(
-			(a) => a.slug.match(/^general/i) || a.slug.match(/^off-topic/i)
-		);
+		return categories.filter((a) => a.slug.match(/^general/i));
 	});
 </script>
