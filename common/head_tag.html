@@ -57,15 +57,7 @@
 	const { registerUnbound } = require('discourse-common/lib/helpers');
 
 	registerUnbound('filter-core', (categories) => {
-		return categories.filter(
-			(a) =>
-				a.slug.match(/^info/) ||
-				a.slug.match(/^support/) ||
-				a.slug.match(/^bug-reports/) ||
-				a.slug.match(/^complaints/) ||
-				a.slug.match(/^general/i) ||
-				a.slug.match(/^off-topic/i)
-		);
+		return categories.filter((a) => a.slug.match(/^bacta-/));
 	});
 
 	registerUnbound('filter-private', (categories) => {
