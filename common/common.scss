@@ -77,6 +77,18 @@
 			background-image: url(https://bactanetwork.com/img/Backgrounds/1.jpg);
 		}
 
+		&.apps-appeals > .category-list {
+			&:before {
+				content: 'Applications & Appeals';
+			}
+
+			background-image: linear-gradient(
+				to bottom,
+				rgb(170, 62, 62) 0%,
+				rgb(201, 109, 109) 100%
+			);
+		}
+
 		&.private > .category-list {
 			&:before {
 				content: 'Staff';

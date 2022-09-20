@@ -31,6 +31,10 @@
 	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
+	<div class="category-thing apps-appeals">
+	{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+
 	<div class="category-thing private">
 	{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
@@ -48,6 +52,10 @@
 	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
+	<div class="category-thing apps-appeals">
+	{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+
 	<div class="category-thing private">
 	{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
@@ -58,6 +66,10 @@
 
 	registerUnbound('filter-core', (categories) => {
 		return categories.filter((a) => a.slug.match(/^bacta-/));
+	});
+
+	registerUnbound('filter-apps-appeals', (categories) => {
+		return categories.filter((a) => a.slug.match(/^app-/));
 	});
 
 	registerUnbound('filter-private', (categories) => {
