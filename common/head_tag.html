@@ -81,7 +81,9 @@
 	});
 
 	registerUnbound('filter-private', (categories) => {
-		return categories.filter((a) => a.slug.match(/^staff/));
+		return categories.filter(
+			(a) => a.slug.match(/^forums-staff/) || a.slug.match(/^staff-/)
+		);
 	});
 
 	registerUnbound('filter-interstate', (categories) => {
