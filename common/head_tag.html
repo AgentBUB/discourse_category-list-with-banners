@@ -27,8 +27,8 @@
 	{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
-	<div class="category-thing community">
-	{{categories-only categories=(filter-community categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	<div class="category-thing interstate">
+	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
@@ -44,8 +44,8 @@
 	{{categories-only categories=(filter-core categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
-	<div class="category-thing community">
-	{{categories-only categories=(filter-community categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	<div class="category-thing interstate">
+	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
@@ -64,7 +64,7 @@
 		return categories.filter((a) => a.slug.match(/^staff/));
 	});
 
-	registerUnbound('filter-community', (categories) => {
-		return categories.filter((a) => a.slug.match(/^general/i));
+	registerUnbound('filter-interstate', (categories) => {
+		return categories.filter((a) => a.slug.match(/^interstate-/i));
 	});
 </script>
