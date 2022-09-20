@@ -31,6 +31,10 @@
 	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
+	<div class="category-thing scp">
+	{{categories-only categories=(filter-scp categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+
 	<div class="category-thing apps-appeals">
 	{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
@@ -50,6 +54,10 @@
 
 	<div class="category-thing interstate">
 	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+
+	<div class="category-thing scp">
+	{{categories-only categories=(filter-scp categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing apps-appeals">
@@ -78,5 +86,9 @@
 
 	registerUnbound('filter-interstate', (categories) => {
 		return categories.filter((a) => a.slug.match(/^interstate-/i));
+	});
+
+	registerUnbound('filter-scp', (categories) => {
+		return categories.filter((a) => a.slug.match(/^scp-/i));
 	});
 </script>

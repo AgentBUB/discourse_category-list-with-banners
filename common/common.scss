@@ -66,7 +66,15 @@
 				content: 'Interstate V';
 			}
 
-			background-image: url(https://imgur.com/v4LNoXG.png);
+			background-image: url(https://imgur.com/br0NYX3.png);
+		}
+
+		&.scp > .category-list {
+			&:before {
+				content: 'SCP-RP';
+			}
+
+			background-image: url(https://bactanetwork.com/img/Backgrounds/SCP2.png);
 		}
 
 		&.core > .category-list {
