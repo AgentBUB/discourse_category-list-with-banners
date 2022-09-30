@@ -77,6 +77,14 @@
 			background-image: url(https://bactanetwork.com/img/Forums/SCPBanner.png);
 		}
 
+		&.togr > .category-list {
+			&:before {
+				content: '[TOGR] The Original Galactic Republic';
+			}
+
+			background-image: url(https://bactanetwork.com/img/Forums/TOGRBanner.jpg);
+		}
+
 		&.core > .category-list {
 			&:before {
 				content: 'Bacta Network';

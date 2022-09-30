@@ -35,6 +35,10 @@
 	{{categories-only categories=(filter-scp categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
+	<div class="category-thing togr">
+   {{categories-only categories=(filter-togr categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+   </div>
+
 	<div class="category-thing apps-appeals">
 	{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
@@ -58,6 +62,10 @@
 
 	<div class="category-thing scp">
 	{{categories-only categories=(filter-scp categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+
+	<div class="category-thing togr">
+	{{categories-only categories=(filter-togr categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing apps-appeals">
@@ -92,5 +100,9 @@
 
 	registerUnbound('filter-scp', (categories) => {
 		return categories.filter((a) => a.slug.match(/^scp-/i));
+	});
+
+	registerUnbound('filter-togr', (categories) => {
+		return categories.filter((a) => a.slug.match(/^togr-/i));
 	});
 </script>
