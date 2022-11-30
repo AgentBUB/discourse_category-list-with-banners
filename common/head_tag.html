@@ -99,7 +99,7 @@
 	});
 
 	registerUnbound('filter-closed', (categories) => {
-		return categories.filter((a) => a.slug.match(/^closed-/i));
+		return categories.filter((a) => a.slug.match(/^closed-/i) || a.slug.match(/^scp-/));
 	});
 
 	registerUnbound('filter-togr', (categories) => {
