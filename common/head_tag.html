@@ -31,16 +31,16 @@
 	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
-	<div class="category-thing scp">
-	{{categories-only categories=(filter-scp categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
 	<div class="category-thing togr">
    {{categories-only categories=(filter-togr categories) latestTopicOnly=latestTopicOnly showTopics=true}}
    </div>
 
 	<div class="category-thing apps-appeals">
 	{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+
+	<div class="category-thing closed">
+	{{categories-only categories=(filter-closed categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
@@ -59,17 +59,17 @@
 	<div class="category-thing interstate">
 	{{categories-only categories=(filter-interstate categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
-
-	<div class="category-thing scp">
-	{{categories-only categories=(filter-scp categories) latestTopicOnly=latestTopicOnly showTopics=true}}
-	</div>
-
+	
 	<div class="category-thing togr">
-	{{categories-only categories=(filter-togr categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+		{{categories-only categories=(filter-togr categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
-
+	
 	<div class="category-thing apps-appeals">
-	{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+		{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+	
+	<div class="category-thing closed">
+	{{categories-only categories=(filter-closed categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
@@ -98,8 +98,8 @@
 		return categories.filter((a) => a.slug.match(/^interstate-/i));
 	});
 
-	registerUnbound('filter-scp', (categories) => {
-		return categories.filter((a) => a.slug.match(/^scp-/i));
+	registerUnbound('filter-closed', (categories) => {
+		return categories.filter((a) => a.slug.match(/^closed-/i));
 	});
 
 	registerUnbound('filter-togr', (categories) => {

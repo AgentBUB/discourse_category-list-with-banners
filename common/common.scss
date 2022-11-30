@@ -69,14 +69,6 @@
 			background-image: url(https://bactanetwork.com/img/Forums/InterstateBanner.png);
 		}
 
-		&.scp > .category-list {
-			&:before {
-				content: 'SCP-RP';
-			}
-
-			background-image: url(https://bactanetwork.com/img/Forums/SCPBanner.png);
-		}
-
 		&.togr > .category-list {
 			&:before {
 				content: '[TOGR] The Original Galactic Republic';
@@ -105,6 +97,18 @@
 			);
 		}
 
+		&.closed > .category-list {
+			&:before {
+				content: 'Shutdown & Legacy Servers';
+			}
+
+			background-image:  linear-gradient(
+				to bottom,
+				rgb(117, 117, 117) 0%,
+				rgb(0, 0, 0) 100%
+			);
+		}
+
 		&.private > .category-list {
 			&:before {
 				content: 'Staff';
@@ -112,14 +116,6 @@
 
 			background-image: linear-gradient(to bottom, #000 0%, #111 100%);
 		}
-	}
-}
-
-.topic-list-item[class*='category-redm-'] {
-	.link-bottom-line,
-	.topic-item-stats {
-		border-left: 4px solid #a00202;
-		padding-left: 4px;
 	}
 }
 
@@ -131,7 +127,7 @@
 	&[class*='category-announcements'] {
 		.link-bottom-line,
 		.topic-item-stats {
-			border-left: 4px solid #ffa76d;
+			border-left: 4px solid #97d9ff;
 			padding-left: 4px;
 		}
 	}
