@@ -39,12 +39,16 @@
 	{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
-	<div class="category-thing closed">
-	{{categories-only categories=(filter-closed categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	<div class="category-thing dev">
+	{{categories-only categories=(filter-dev categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
 	{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+
+	<div class="category-thing closed">
+	{{categories-only categories=(filter-closed categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 </script>
 
@@ -67,13 +71,17 @@
 	<div class="category-thing apps-appeals">
 		{{categories-only categories=(filter-apps-appeals categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
-	
-	<div class="category-thing closed">
-	{{categories-only categories=(filter-closed categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+
+	<div class="category-thing dev">
+	{{categories-only categories=(filter-dev categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 
 	<div class="category-thing private">
 	{{categories-only categories=(filter-private categories) latestTopicOnly=latestTopicOnly showTopics=true}}
+	</div>
+	
+	<div class="category-thing closed">
+	{{categories-only categories=(filter-closed categories) latestTopicOnly=latestTopicOnly showTopics=true}}
 	</div>
 </script>
 
@@ -84,8 +92,20 @@
 		return categories.filter((a) => a.slug.match(/^bacta-/));
 	});
 
+	registerUnbound('filter-interstate', (categories) => {
+		return categories.filter((a) => a.slug.match(/^interstate-/i));
+	});
+
+	registerUnbound('filter-togr', (categories) => {
+		return categories.filter((a) => a.slug.match(/^togr-/i));
+	});
+
 	registerUnbound('filter-apps-appeals', (categories) => {
 		return categories.filter((a) => a.slug.match(/^app-/));
+	});
+
+	registerUnbound('filter-dev', (categories) => {
+		return categories.filter((a) => a.slug.match(/^dev-/));
 	});
 
 	registerUnbound('filter-private', (categories) => {
@@ -94,15 +114,7 @@
 		);
 	});
 
-	registerUnbound('filter-interstate', (categories) => {
-		return categories.filter((a) => a.slug.match(/^interstate-/i));
-	});
-
 	registerUnbound('filter-closed', (categories) => {
 		return categories.filter((a) => a.slug.match(/^closed-/i) || a.slug.match(/^scp-/));
-	});
-
-	registerUnbound('filter-togr', (categories) => {
-		return categories.filter((a) => a.slug.match(/^togr-/i));
 	});
 </script>

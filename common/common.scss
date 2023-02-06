@@ -97,6 +97,22 @@
 			);
 		}
 
+		&.dev > .category-list {
+			&:before {
+				content: 'Developers';
+			}
+
+			background-image: linear-gradient(to bottom, #8210af 0%, #400158 100%);
+		}
+
+		&.private > .category-list {
+			&:before {
+				content: 'Staff';
+			}
+
+			background-image: linear-gradient(to bottom, #000 0%, #111 100%);
+		}
+
 		&.closed > .category-list {
 			&:before {
 				content: 'Shutdown & Legacy Servers';
@@ -107,14 +123,6 @@
 				rgb(117, 117, 117) 0%,
 				rgb(0, 0, 0) 100%
 			);
-		}
-
-		&.private > .category-list {
-			&:before {
-				content: 'Staff';
-			}
-
-			background-image: linear-gradient(to bottom, #000 0%, #111 100%);
 		}
 	}
 }
