@@ -101,7 +101,9 @@
 	});
 
 	registerUnbound('filter-apps-appeals', (categories) => {
-		return categories.filter((a) => a.slug.match(/^app-/));
+		return categories.filter(
+			(a) => a.slug.match(/^app-/) || a.slug.match(/^appeal-/)
+		);
 	});
 
 	registerUnbound('filter-dev', (categories) => {
