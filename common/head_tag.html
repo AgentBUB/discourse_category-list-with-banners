@@ -92,9 +92,9 @@
 		return categories.filter((a) => a.slug.match(/^bacta-/));
 	});
 
-	registerUnbound('filter-interstate', (categories) => {
-		return categories.filter((a) => a.slug.match(/^interstate-/i));
-	});
+	// registerUnbound('filter-interstate', (categories) => {
+	// 	return categories.filter((a) => a.slug.match(/^interstate-/i));
+	// });
 
 	registerUnbound('filter-togr', (categories) => {
 		return categories.filter((a) => a.slug.match(/^togr-/i));
@@ -117,6 +117,6 @@
 	});
 
 	registerUnbound('filter-closed', (categories) => {
-		return categories.filter((a) => a.slug.match(/^closed-/i) || a.slug.match(/^scp-/));
+		return categories.filter((a) => a.slug.match(/^closed-/i) || a.slug.match(/^scp-/) || a.slug.match(/^interstate-/));
 	});
 </script>
