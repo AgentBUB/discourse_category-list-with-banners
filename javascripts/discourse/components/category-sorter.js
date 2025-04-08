@@ -42,9 +42,30 @@ export default class CategorySorter extends Component {
 			groupMapping[group.trim()] = rule;
 		});
 
-		const original = document.querySelector('div#ember22.ember-view');
-		console.log('📦 original element:', original);
-		if (!original) return console.warn('❌ Original category table not found');
+		const candidates = document.querySelectorAll('div.ember-view');
+		let originalWrapper = null;
+		candidates.forEach((wrapper) => {
+			const firstChild = wrapper.firstElementChild;
+			if (
+				firstChild &&
+				firstChild.tagName === 'TABLE' &&
+				firstChild.classList.contains('category-list') &&
+				firstChild.classList.contains('with-topics')
+			) {
+				originalWrapper = wrapper;
+			}
+		});
+		if (!originalWrapper) {
+			console.warn('❌ Could not find the category table wrapper.');
+			return;
+		}
+		const originalTable = originalWrapper.querySelector(
+			'table.category-list.with-topics'
+		);
+		if (!originalTable) {
+			console.warn('❌ Table not found inside wrapper.');
+			return;
+		}
 
 		const originalRows = original.querySelectorAll(
 			'tbody tr[data-category-id]'
