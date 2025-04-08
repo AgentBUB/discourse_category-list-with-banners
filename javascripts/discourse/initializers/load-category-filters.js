@@ -1,8 +1,11 @@
-import "../helpers/category-filters";
+import { importModuleForTheme } from "discourse-common/lib/theme-functions";
 
 export default {
   name: "load-category-filters",
+
   initialize() {
-    // This file ensures the helpers are loaded early.
+    importModuleForTheme("lib/category-filters").then((mod) => {
+      mod.registerCategoryFilters();
+    });
   },
 };
