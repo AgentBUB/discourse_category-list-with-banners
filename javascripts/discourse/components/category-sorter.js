@@ -5,7 +5,6 @@ import { scheduleOnce } from '@ember/runloop';
 export default class CategorySorter extends Component {
 	constructor() {
 		super(...arguments);
-		console.log('CategorySorter loaded', this.args.categories);
 		scheduleOnce('afterRender', this, this.placeCategories);
 	}
 
@@ -13,44 +12,63 @@ export default class CategorySorter extends Component {
 	placeCategories() {
 		const categories = this.args.categories || [];
 
-		// Clear divs before inserting new content
-		document
-			.querySelectorAll('.category-thing')
-			.forEach((div) => (div.innerHTML = ''));
+		const groupMapping = {
+			core: 'bacta',
+			togr: 'togr',
+			'apps-appeals': ['app', 'appeal'],
+			dev: 'dev',
+			private: ['staff', 'forums-staff'],
+			closed: ['closed', 'ban', 'blacklist'],
+		};
 
-		categories.forEach((category) => {
-			const slug = category.slug;
-			let targetClass = null;
+		Object.keys(groupMapping).forEach((group) => {
+			const container = document.querySelector(`.category-thing.${group}`);
+			if (!container) return;
 
-			if (slug.startsWith('bacta')) {
-				targetClass = 'core';
-			} else if (slug.startsWith('togr')) {
-				targetClass = 'togr';
-			} else if (slug.startsWith('app') || slug.includes('appeal')) {
-				targetClass = 'apps-appeals';
-			} else if (slug.includes('dev') || slug.includes('developer')) {
-				targetClass = 'dev';
-			} else if (slug.startsWith('pri')) {
-				targetClass = 'private';
-			} else if (
-				slug.startsWith('closed') ||
-				slug.includes('blacklist') ||
-				slug.includes('ban')
-			) {
-				targetClass = 'closed';
-			}
+			container.innerHTML = '';
 
-			if (targetClass) {
-				const container = document.querySelector(
-					`.category-thing.${targetClass}`
-				);
-				if (container) {
-					container.innerHTML += `
-						<div class="custom-category">
-						<a href="/c/${slug}/${category.id}">${category.name}</a>
-						</div>
+			const table = document.createElement('table');
+			table.className = 'category-list with-topics';
+			table.innerHTML = `
+				<thead>
+				<tr>
+					<th class="category">
+					<span role="heading" aria-level="2" id="categories-only-category">
+						Category
+					</span>
+					</th>
+					<th class="topics">Topics</th>
+					<th class="latest">Latest</th>
+				</tr>
+				</thead>
+				<tbody aria-labelledby="categories-only-category"></tbody>
+			`;
+
+			const tbody = table.querySelector('tbody');
+
+			const matches = Array.isArray(groupMapping[group])
+				? (slug) => groupMapping[group].some((prefix) => slug.includes(prefix))
+				: (slug) => slug.startsWith(groupMapping[group]);
+
+			categories.forEach((category) => {
+				if (matches(category.slug)) {
+					const row = document.createElement('tr');
+					row.innerHTML = `
+						<td class="category">
+						<a href="/c/${category.slug}/${category.id}">${category.name}</a>
+						</td>
+						<td class="topics">${category.topic_count}</td>
+						<td class="latest">
+						<a href="${category.topic_url}">View</a>
+						</td>
 					`;
+					tbody.appendChild(row);
 				}
+			});
+
+			// Only append table if we have rows
+			if (tbody.children.length > 0) {
+				container.appendChild(table);
 			}
 		});
 	}
