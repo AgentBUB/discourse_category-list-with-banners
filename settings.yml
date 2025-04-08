@@ -5,8 +5,8 @@ group_slug_mapping:
       "togr": "togr",
       "apps-appeals": ["app", "appeal"],
       "dev": "dev",
-      "private": "pri",
-      "closed": ["closed", "ban", "blacklist"]
+      "private": ['staff', 'forums-staff'],
+      "closed": ['scp', 'interstate']
     }
   type: string
   description: 'JSON mapping of group keys to slug prefixes'
