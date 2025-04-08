@@ -1,15 +1,23 @@
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { scheduleOnce } from '@ember/runloop';
 import { service } from '@ember/service';
 
 export default class CategorySorter extends Component {
 	@service siteSettings;
 
+	constructor() {
+		super(...arguments);
+		console.log('Setting value:', this.siteSettings.group_slug_mapping);
+		scheduleOnce('afterRender', this, this.sortAndInject);
+	}
+
+	@action
 	sortAndInject() {
 		const categories = this.args.categories || [];
 
 		// Parse list-type mapping from settings
 		const groupMapping = {};
-		console.log('Setting value:', this.siteSettings.group_slug_mapping);
 		(this.siteSettings.group_slug_mapping || []).forEach((entry) => {
 			const [group, ruleRaw] = entry.split(';');
 
