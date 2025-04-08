@@ -3,7 +3,10 @@ import { action } from '@ember/object';
 
 export default class CategorySorter extends Component {
 	@action
-	sortAndInject() {
+	sortAndInject(element) {
+		// Sanity check
+		console.log('Running sortAndInject');
+
 		const categories = this.args.categories || [];
 		const mappingRaw = this.args.mapping || '';
 		const mappingList =
@@ -26,11 +29,13 @@ export default class CategorySorter extends Component {
 			groupMapping[group.trim()] = rule;
 		});
 
-		// Get original rows
-		const originalRows = document.querySelectorAll(
-			'div#ember22.ember-view table.category-list.with-topics tbody tr[data-category-id]'
-		);
+		// Remove existing ember-generated table
+		const original = document.querySelector('div#ember22.ember-view');
+		if (!original) return console.warn('Original category table not found');
 
+		const originalRows = original.querySelectorAll(
+			'tbody tr[data-category-id]'
+		);
 		const rowMap = new Map();
 		originalRows.forEach((row) => {
 			const id = parseInt(row.getAttribute('data-category-id'), 10);
@@ -67,9 +72,45 @@ export default class CategorySorter extends Component {
 			}
 		}
 
-		const emberRoot = document.querySelector('div#ember22.ember-view');
-		if (emberRoot) {
-			emberRoot.remove();
+		if (original) {
+			original.remove();
 		}
+	}
+
+	createTable(groupKey) {
+		const container = document.querySelector(`.category-thing.${groupKey}`);
+		if (!container) {
+			console.warn(`Missing container for group: ${groupKey}`);
+		}
+
+		const table = document.createElement('table');
+		table.className = 'category-list with-topics';
+		table.innerHTML = `
+		<thead>
+			<tr>
+			<th class="category">
+				<span role="heading" aria-level="2" id="categories-only-category-${groupKey}">
+				Category
+				</span>
+			</th>
+			<th class="topics">Topics</th>
+			<th class="latest">Latest</th>
+			</tr>
+		</thead>
+		<tbody aria-labelledby="categories-only-category-${groupKey}"></tbody>
+		`;
+
+		return {
+			table,
+			tbody: table.querySelector('tbody'),
+			container: container || this.createFallbackDiv(groupKey),
+		};
+	}
+
+	createFallbackDiv(groupKey) {
+		const fallback = document.createElement('div');
+		fallback.className = `category-thing ${groupKey}`;
+		document.body.appendChild(fallback);
+		return fallback;
 	}
 }
