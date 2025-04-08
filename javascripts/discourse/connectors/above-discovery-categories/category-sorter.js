@@ -5,33 +5,37 @@ import { scheduleOnce } from '@ember/runloop';
 export default class CategorySorter extends Component {
 	constructor() {
 		super(...arguments);
-		scheduleOnce('afterRender', this, this.insertCategories);
+		scheduleOnce('afterRender', this, this.placeCategories);
 	}
 
 	@action
-	insertCategories() {
+	placeCategories() {
 		const categories = this.args.categories || [];
 
-		document.querySelectorAll('.category-thing').forEach((div) => {
-			div.innerHTML = '';
-		});
+		// Clear divs before inserting new content
+		document
+			.querySelectorAll('.category-thing')
+			.forEach((div) => (div.innerHTML = ''));
 
 		categories.forEach((category) => {
 			const slug = category.slug;
-			console.log(slug);
-			let targetClass = '';
+			let targetClass = null;
 
 			if (slug.startsWith('bacta')) {
 				targetClass = 'core';
 			} else if (slug.startsWith('togr')) {
 				targetClass = 'togr';
-			} else if (slug.startsWith('app')) {
+			} else if (slug.startsWith('app') || slug.includes('appeal')) {
 				targetClass = 'apps-appeals';
-			} else if (slug.startsWith('dev')) {
+			} else if (slug.includes('dev') || slug.includes('developer')) {
 				targetClass = 'dev';
-			} else if (slug.startsWith('staff')) {
+			} else if (slug.startsWith('pri')) {
 				targetClass = 'private';
-			} else if (slug.startsWith('closed')) {
+			} else if (
+				slug.startsWith('closed') ||
+				slug.includes('blacklist') ||
+				slug.includes('ban')
+			) {
 				targetClass = 'closed';
 			}
 
@@ -41,10 +45,10 @@ export default class CategorySorter extends Component {
 				);
 				if (container) {
 					container.innerHTML += `
-                        <div class="custom-category-item">
-                        <a href="/c/${slug}/${category.id}">${category.name}</a>
-                        </div>
-                    `;
+						<div class="custom-category">
+						<a href="/c/${slug}/${category.id}">${category.name}</a>
+						</div>
+					`;
 				}
 			}
 		});
