@@ -14,6 +14,16 @@ export default class CategorySorter extends Component {
 	@action
 	sortAndInject() {
 		const categories = this.args.categories || [];
+
+		// Load mapping from theme setting
+		let groupMapping;
+		try {
+			groupMapping = JSON.parse(this.siteSettings.group_slug_mapping);
+		} catch (e) {
+			console.error('Invalid group_slug_mapping JSON:', e);
+			groupMapping = {};
+		}
+
 		const originalRows = document.querySelectorAll(
 			'div#ember22.ember-view table.category-list.with-topics tbody tr[data-category-id]'
 		);
@@ -24,25 +34,12 @@ export default class CategorySorter extends Component {
 			rowMap.set(id, row);
 		});
 
-		let groupMapping;
-		try {
-			groupMapping = JSON.parse(this.siteSettings.group_slug_mapping);
-		} catch (e) {
-			console.error('Invalid group_slug_mapping JSON:', e);
-			groupMapping = {};
-		}
-
 		const containers = {};
-
-		// Build group tables first
 		Object.keys(groupMapping).forEach((group) => {
 			containers[group] = this.createTable(group);
 		});
-
-		// Default "other" group
 		containers.other = this.createTable('other');
 
-		// Group categories into matching tables
 		categories.forEach((category) => {
 			const slug = category.slug;
 			const row = rowMap.get(category.id);
@@ -51,11 +48,8 @@ export default class CategorySorter extends Component {
 			let matchedGroup = 'other';
 
 			for (const [group, matchRule] of Object.entries(groupMapping)) {
-				const matches = Array.isArray(matchRule)
-					? matchRule.some((prefix) => slug.includes(prefix))
-					: slug.startsWith(matchRule);
-
-				if (matches) {
+				const matchList = Array.isArray(matchRule) ? matchRule : [matchRule];
+				if (matchList.some((prefix) => slug.includes(prefix))) {
 					matchedGroup = group;
 					break;
 				}
@@ -64,14 +58,12 @@ export default class CategorySorter extends Component {
 			containers[matchedGroup].tbody.appendChild(row);
 		});
 
-		// Append built tables to their divs
 		for (const [group, { container, table }] of Object.entries(containers)) {
 			if (table.querySelector('tbody').children.length > 0) {
 				container.appendChild(table);
 			}
 		}
 
-		// Clean up original category list
 		const emberRoot = document.querySelector('div#ember22.ember-view');
 		if (emberRoot) {
 			emberRoot.remove();
