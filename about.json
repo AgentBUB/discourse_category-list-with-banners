@@ -1,5 +1,9 @@
 {
 	"name": "Category List with Banners",
 	"component": true,
-	"authors": "Agent BUB"
+	"authors": "Agent BUB",
+	"version": "2.0",
+	"settings": {
+		"group_slug_mapping": true
+	}
 }

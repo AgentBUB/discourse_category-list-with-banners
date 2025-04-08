@@ -17,7 +17,7 @@ export default class CategorySorter extends Component {
 
 		// Parse list-type mapping from settings
 		const groupMapping = {};
-		console.log(this.siteSettings.group_slug_mapping);
+		console.log('Setting value:', this.siteSettings.group_slug_mapping);
 		(this.siteSettings.group_slug_mapping || []).forEach((entry) => {
 			const [group, ruleRaw] = entry.split(';');
 
@@ -41,7 +41,6 @@ export default class CategorySorter extends Component {
 
 			groupMapping[group.trim()] = rule;
 		});
-		console.log('Parsed group mapping:', groupMapping);
 
 		const originalRows = document.querySelectorAll(
 			'div#ember22.ember-view table.category-list.with-topics tbody tr[data-category-id]'
