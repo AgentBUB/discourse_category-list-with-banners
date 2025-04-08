@@ -10,10 +10,8 @@ export default class CategorySorter extends Component {
 		requestAnimationFrame(() => this.sortAndInject());
 
 		this.router.on('routeDidChange', () => {
-			console.log('test');
-			console.log(this.router.currentRouteName);
 			if (this.router.currentRouteName === 'discovery.categories') {
-				requestAnimationFrame(() => this.sortAndInject());
+				setTimeout(() => this.sortAndInject(), 50);
 			}
 		});
 	}
@@ -45,6 +43,7 @@ export default class CategorySorter extends Component {
 		});
 
 		const original = document.querySelector('div#ember22.ember-view');
+		console.log('📦 original element:', original);
 		if (!original) return console.warn('❌ Original category table not found');
 
 		const originalRows = original.querySelectorAll(
