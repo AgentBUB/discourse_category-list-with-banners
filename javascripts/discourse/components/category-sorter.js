@@ -11,8 +11,9 @@ export default class CategorySorter extends Component {
 	@action
 	sortAndInject() {
 		const categories = this.args.categories || [];
-		const mappingList = this.args.mapping || [];
-		console.log(mappingList);
+		const mappingRaw = this.args.mapping || '';
+		const mappingList =
+			typeof mappingRaw === 'string' ? mappingRaw.split('|') : mappingRaw;
 
 		// Parse list-type mapping from settings
 		const groupMapping = {};
