@@ -15,14 +15,23 @@ export default class CategorySorter extends Component {
 	sortAndInject() {
 		const categories = this.args.categories || [];
 
-		// Load mapping from theme setting
-		let groupMapping;
-		try {
-			groupMapping = JSON.parse(this.siteSettings.group_slug_mapping);
-		} catch (e) {
-			console.error('Invalid group_slug_mapping JSON:', e);
-			groupMapping = {};
-		}
+		// Parse list-type mapping from settings
+		const groupMapping = {};
+		(this.siteSettings.group_slug_mapping || []).forEach((entry) => {
+			const [group, ruleRaw] = entry.split(';');
+			if (!group || !ruleRaw) return;
+
+			let rule;
+			try {
+				// Try to parse as array (e.g., "['app', 'appeal']")
+				rule = JSON.parse(ruleRaw);
+			} catch {
+				// Fallback to string
+				rule = ruleRaw.trim();
+			}
+
+			groupMapping[group.trim()] = rule;
+		});
 
 		const originalRows = document.querySelectorAll(
 			'div#ember22.ember-view table.category-list.with-topics tbody tr[data-category-id]'
@@ -47,9 +56,9 @@ export default class CategorySorter extends Component {
 
 			let matchedGroup = 'other';
 
-			for (const [group, matchRule] of Object.entries(groupMapping)) {
-				const matchList = Array.isArray(matchRule) ? matchRule : [matchRule];
-				if (matchList.some((prefix) => slug.includes(prefix))) {
+			for (const [group, rule] of Object.entries(groupMapping)) {
+				const rules = Array.isArray(rule) ? rule : [rule];
+				if (rules.some((prefix) => slug.includes(prefix))) {
 					matchedGroup = group;
 					break;
 				}
@@ -58,7 +67,7 @@ export default class CategorySorter extends Component {
 			containers[matchedGroup].tbody.appendChild(row);
 		});
 
-		for (const [group, { container, table }] of Object.entries(containers)) {
+		for (const { container, table } of Object.values(containers)) {
 			if (table.querySelector('tbody').children.length > 0) {
 				container.appendChild(table);
 			}
