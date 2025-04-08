@@ -40,6 +40,7 @@ export default class CategorySorter extends Component {
 
 			groupMapping[group.trim()] = rule;
 		});
+		console.log('Parsed group mapping:', groupMapping);
 
 		const originalRows = document.querySelectorAll(
 			'div#ember22.ember-view table.category-list.with-topics tbody tr[data-category-id]'
