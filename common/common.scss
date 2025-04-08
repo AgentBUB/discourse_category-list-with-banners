@@ -113,12 +113,24 @@
 			background-image: linear-gradient(to bottom, #000 0%, #111 100%);
 		}
 
+		&.other > .category-list {
+			&:before {
+				content: 'Ungrouped Content';
+			}
+
+			background-image: linear-gradient(
+				to bottom,
+				rgb(117, 117, 117) 0%,
+				rgb(0, 0, 0) 100%
+			);
+		}
+
 		&.closed > .category-list {
 			&:before {
 				content: 'Legacy Servers';
 			}
 
-			background-image:  linear-gradient(
+			background-image: linear-gradient(
 				to bottom,
 				rgb(117, 117, 117) 0%,
 				rgb(0, 0, 0) 100%
@@ -141,29 +153,28 @@
 	}
 }
 
-
 /* Migrated from mobile/mobile.scss */
 @media screen and (max-width: 768px) {
-.navigation-categories {
-    .category-thing {
-        margin-left: -10px;
-        margin-right: -10px;
-        width: calc(100% + 20px);
+	.navigation-categories {
+		.category-thing {
+			margin-left: -10px;
+			margin-right: -10px;
+			width: calc(100% + 20px);
 
-        & > .category-list {
-            padding-left: 10px;
-            /*padding-right: 10px;*/
-        }
-        
-        &.core > .category-list {
-            display: block;
-            padding-top: 0px;
-            background-size: 0px 0px;
-            
-            &:before {
-                content: '';
-            }
-        }
-    }
-}
+			& > .category-list {
+				padding-left: 10px;
+				/*padding-right: 10px;*/
+			}
+
+			&.core > .category-list {
+				display: block;
+				padding-top: 0px;
+				background-size: 0px 0px;
+
+				&:before {
+					content: '';
+				}
+			}
+		}
+	}
 }
