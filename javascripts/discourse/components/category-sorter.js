@@ -8,7 +8,7 @@ export default class CategorySorter extends Component {
 
 	constructor() {
 		super(...arguments);
-		console.log('Setting value:', this.siteSettings.group_slug_mapping);
+		console.log('Setting value:', siteSettings.group_slug_mapping);
 		scheduleOnce('afterRender', this, this.sortAndInject);
 	}
 
