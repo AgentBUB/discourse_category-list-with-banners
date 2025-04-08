@@ -1,10 +1,15 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { didInsert } from '@ember/modifier';
 
 export default class CategorySorter extends Component {
+	constructor() {
+		super(...arguments);
+		requestAnimationFrame(() => this.sortAndInject());
+	}
+
 	@action
-	sortAndInject(element) {
-		// Sanity check
+	sortAndInject() {
 		console.log('Running sortAndInject');
 
 		const categories = this.args.categories || [];
@@ -23,15 +28,14 @@ export default class CategorySorter extends Component {
 					rule = JSON.parse(rule);
 				}
 			} catch {
-				// Leave as string
+				// fallback to string
 			}
 
 			groupMapping[group.trim()] = rule;
 		});
 
-		// Remove existing ember-generated table
 		const original = document.querySelector('div#ember22.ember-view');
-		if (!original) return console.warn('Original category table not found');
+		if (!original) return console.warn('❌ Original category table not found');
 
 		const originalRows = original.querySelectorAll(
 			'tbody tr[data-category-id]'
@@ -72,15 +76,13 @@ export default class CategorySorter extends Component {
 			}
 		}
 
-		if (original) {
-			original.remove();
-		}
+		original.remove();
 	}
 
 	createTable(groupKey) {
 		const container = document.querySelector(`.category-thing.${groupKey}`);
 		if (!container) {
-			console.warn(`Missing container for group: ${groupKey}`);
+			console.warn(`⚠️ No container found for group: ${groupKey}`);
 		}
 
 		const table = document.createElement('table');
