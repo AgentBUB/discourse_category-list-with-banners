@@ -7,8 +7,11 @@ export default class CategorySorter extends Component {
 
 	constructor() {
 		super(...arguments);
-		requestAnimationFrame(() => this.sortAndInject());
 
+		// Run initially
+		setTimeout(() => this.sortAndInject(), 50);
+
+		// Run on every route change to categories
 		this.router.on('routeDidChange', () => {
 			if (this.router.currentRouteName === 'discovery.categories') {
 				setTimeout(() => this.sortAndInject(), 50);
@@ -18,7 +21,7 @@ export default class CategorySorter extends Component {
 
 	@action
 	sortAndInject() {
-		console.log('Running sortAndInject');
+		console.log('✅ Running sortAndInject');
 
 		const categories = this.args.categories || [];
 		const mappingRaw = this.args.mapping || '';
@@ -42,6 +45,7 @@ export default class CategorySorter extends Component {
 			groupMapping[group.trim()] = rule;
 		});
 
+		// 🔍 Find the wrapper dynamically based on first child being a category table
 		const candidates = document.querySelectorAll('div.ember-view');
 		let originalWrapper = null;
 		candidates.forEach((wrapper) => {
@@ -55,10 +59,12 @@ export default class CategorySorter extends Component {
 				originalWrapper = wrapper;
 			}
 		});
+
 		if (!originalWrapper) {
 			console.warn('❌ Could not find the category table wrapper.');
 			return;
 		}
+
 		const originalTable = originalWrapper.querySelector(
 			'table.category-list.with-topics'
 		);
@@ -67,9 +73,11 @@ export default class CategorySorter extends Component {
 			return;
 		}
 
-		const originalRows = original.querySelectorAll(
+		// ✅ Use the correct reference here
+		const originalRows = originalTable.querySelectorAll(
 			'tbody tr[data-category-id]'
 		);
+
 		const rowMap = new Map();
 		originalRows.forEach((row) => {
 			const id = parseInt(row.getAttribute('data-category-id'), 10);
@@ -106,7 +114,8 @@ export default class CategorySorter extends Component {
 			}
 		}
 
-		original.remove();
+		// ✅ Safely remove the original wrapper
+		originalWrapper.remove();
 	}
 
 	createTable(groupKey) {
