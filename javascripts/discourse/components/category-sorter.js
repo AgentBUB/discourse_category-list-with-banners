@@ -19,15 +19,23 @@ export default class CategorySorter extends Component {
 		const groupMapping = {};
 		(this.siteSettings.group_slug_mapping || []).forEach((entry) => {
 			const [group, ruleRaw] = entry.split(';');
+
 			if (!group || !ruleRaw) return;
 
-			let rule;
+			let rule = ruleRaw.trim();
+
 			try {
-				// Try to parse as array (e.g., "['app', 'appeal']")
-				rule = JSON.parse(ruleRaw);
-			} catch {
-				// Fallback to string
-				rule = ruleRaw.trim();
+				// If it's a valid JSON array (like "['a', 'b']" or '["a", "b"]'), parse it
+				if (rule.startsWith('[') || rule.startsWith('{')) {
+					rule = JSON.parse(rule);
+				}
+			} catch (err) {
+				console.warn(
+					`Could not parse rule for group "${group}":`,
+					ruleRaw,
+					err
+				);
+				// leave it as a plain string
 			}
 
 			groupMapping[group.trim()] = rule;

@@ -1,4 +1,4 @@
 group_slug_mapping:
   type: list
-  default: "core;bacta|togr;togr|apps-appeals;['app', 'appeal']|dev;dev|private;['staff', 'forums-staff']|closed;['scp', 'interstate']"
-  description: 'Group key; slug prefix or list of prefixes. Format: group;prefix or group;[prefix1, prefix2]'
+  default: 'core;bacta|togr;togr|apps-appeals;["app", "appeal"]|dev;dev|private;["staff", "forums-staff"]|closed;["ban", "blacklist"]'
+  description: 'Group key; slug prefix or list of prefixes. Format: group;prefix or group;["prefix1", "prefix2"]'
