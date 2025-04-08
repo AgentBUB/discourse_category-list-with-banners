@@ -7,12 +7,11 @@ export default class CategorySorter extends Component {
 
 	constructor() {
 		super(...arguments);
-
-		// Run initially
 		requestAnimationFrame(() => this.sortAndInject());
 
-		// Run again when route changes (e.g. Latest → Categories)
 		this.router.on('routeDidChange', () => {
+			console.log('test');
+			console.log(this.router.currentRouteName);
 			if (this.router.currentRouteName === 'discovery.categories') {
 				requestAnimationFrame(() => this.sortAndInject());
 			}
