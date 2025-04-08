@@ -18,6 +18,7 @@ export default class CategorySorter extends Component {
 
 		categories.forEach((category) => {
 			const slug = category.slug;
+			console.log(slug);
 			let targetClass = '';
 
 			if (slug.startsWith('bacta')) {
