@@ -9,7 +9,6 @@ export default class CategorySorter extends Component {
 		const mappingList =
 			typeof mappingRaw === 'string' ? mappingRaw.split('|') : mappingRaw;
 
-		// Parse list-type mapping from settings
 		const groupMapping = {};
 		mappingList.forEach((entry) => {
 			const [group, ruleRaw] = entry.split(';');
@@ -21,12 +20,13 @@ export default class CategorySorter extends Component {
 					rule = JSON.parse(rule);
 				}
 			} catch {
-				// Leave as-is
+				// Leave as string
 			}
 
 			groupMapping[group.trim()] = rule;
 		});
 
+		// Get original rows
 		const originalRows = document.querySelectorAll(
 			'div#ember22.ember-view table.category-list.with-topics tbody tr[data-category-id]'
 		);
@@ -71,42 +71,5 @@ export default class CategorySorter extends Component {
 		if (emberRoot) {
 			emberRoot.remove();
 		}
-	}
-
-	createTable(groupKey) {
-		const container = document.querySelector(`.category-thing.${groupKey}`);
-		if (!container) {
-			console.warn(`No container div found for group: ${groupKey}`);
-		}
-
-		const table = document.createElement('table');
-		table.className = 'category-list with-topics';
-		table.innerHTML = `
-		<thead>
-			<tr>
-			<th class="category">
-				<span role="heading" aria-level="2" id="categories-only-category">
-				Category
-				</span>
-			</th>
-			<th class="topics">Topics</th>
-			<th class="latest">Latest</th>
-			</tr>
-		</thead>
-		<tbody aria-labelledby="categories-only-category"></tbody>
-		`;
-
-		return {
-			table,
-			tbody: table.querySelector('tbody'),
-			container: container || this.createFallbackDiv(groupKey),
-		};
-	}
-
-	createFallbackDiv(groupKey) {
-		const fallback = document.createElement('div');
-		fallback.className = `category-thing ${groupKey}`;
-		document.body.appendChild(fallback);
-		return fallback;
 	}
 }
