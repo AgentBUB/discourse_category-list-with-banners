@@ -5,6 +5,7 @@ import { scheduleOnce } from '@ember/runloop';
 export default class CategorySorter extends Component {
 	constructor() {
 		super(...arguments);
+		console.log('CategorySorter loaded', this.args.categories);
 		scheduleOnce('afterRender', this, this.placeCategories);
 	}
 
