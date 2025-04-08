@@ -6,4 +6,7 @@
 <div class='category-thing other'></div>
 <div class='category-thing closed'></div>
 
-<CategorySorter @categories={{@outletArgs.categories}} />
+<CategorySorter
+	@categories={{@outletArgs.categories}}
+	@mapping={{theme-setting 'group_slug_mapping'}}
+/>

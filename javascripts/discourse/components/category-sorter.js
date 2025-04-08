@@ -1,42 +1,31 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { scheduleOnce } from '@ember/runloop';
-import { service } from '@ember/service';
 
 export default class CategorySorter extends Component {
-	@service siteSettings;
-
 	constructor() {
 		super(...arguments);
-		console.log('Setting value:', siteSettings.group_slug_mapping);
 		scheduleOnce('afterRender', this, this.sortAndInject);
 	}
 
 	@action
 	sortAndInject() {
 		const categories = this.args.categories || [];
+		const mappingList = this.args.mapping || [];
 
 		// Parse list-type mapping from settings
 		const groupMapping = {};
-		(this.siteSettings.group_slug_mapping || []).forEach((entry) => {
+		mappingList.forEach((entry) => {
 			const [group, ruleRaw] = entry.split(';');
-
 			if (!group || !ruleRaw) return;
 
 			let rule = ruleRaw.trim();
-
 			try {
-				// If it's a valid JSON array (like "['a', 'b']" or '["a", "b"]'), parse it
 				if (rule.startsWith('[') || rule.startsWith('{')) {
 					rule = JSON.parse(rule);
 				}
-			} catch (err) {
-				console.warn(
-					`Could not parse rule for group "${group}":`,
-					ruleRaw,
-					err
-				);
-				// leave it as a plain string
+			} catch {
+				// Leave as-is
 			}
 
 			groupMapping[group.trim()] = rule;
