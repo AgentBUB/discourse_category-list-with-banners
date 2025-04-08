@@ -1,0 +1,11 @@
+{{log @outletArgs}}
+
+<div class='debug'>categories found</div>
+
+<div class='category-list-banner core'>
+	{{categories-only
+		categories=(filter-core @outletArgs.categories)
+		latestTopicOnly=true
+		showTopics=true
+	}}
+</div>
