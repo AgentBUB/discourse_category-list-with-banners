@@ -1,11 +1,22 @@
 import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { didInsert } from '@ember/modifier';
 
 export default class CategorySorter extends Component {
+	@service router;
+
 	constructor() {
 		super(...arguments);
+
+		// Run initially
 		requestAnimationFrame(() => this.sortAndInject());
+
+		// Run again when route changes (e.g. Latest → Categories)
+		this.router.on('routeDidChange', () => {
+			if (this.router.currentRouteName === 'discovery.categories') {
+				requestAnimationFrame(() => this.sortAndInject());
+			}
+		});
 	}
 
 	@action
