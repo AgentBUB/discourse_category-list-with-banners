@@ -3,62 +3,71 @@
 	color: #e9e9e9 !important;
 }
 .toggle-hide-devs-btn {
-	background-color: transparent;
+    background-color: transparent;
+}
+
+.topic-list .main-link.focused {
+    box-shadow: none;
 }
 
 .topic-post .topic-body {
-	z-index: 1;
+    z-index: 1;
 }
 
 .category-logo img {
-	max-width: 64px !important;
-	max-height: 64px !important;
+    max-width: 64px !important;
+    max-height: 64px !important;
 }
 
 .categories-root {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    & > div {
+        width: calc(50% - 10px);
+    }
+}
 
-	& > div {
-		width: calc(50% - 10px);
-	}
+.category-logo.aspect-image {
+    margin: 0.33em 1em 0.33em 0;
 }
 
 .navigation-categories {
 	.category-thing {
 		& > .category-list {
 			display: block;
-			padding-top: 150px;
-			background-repeat: no-repeat;
-			background-size: 100% 150px;
-			position: relative;
-			width: 100%;
-
-			&:before {
-				position: absolute;
-				top: calc(150px - 50px - 25px);
-				left: 13px;
-				color: #fff;
-				text-shadow: #000 0px 0px 4px;
-				font-size: 50px;
-			}
-
-			thead {
-				display: none;
-			}
-
-			tbody {
-				position: static;
-				display: table;
-				width: 100%;
-				table-layout: fixed;
-				box-sizing: border-box;
-			}
-
-			div {
-				position: static;
-			}
+            padding-top: 150px;
+            background-repeat: no-repeat;
+            background-size: 100% 150px;
+            position: relative;
+            width: 100%;
+            
+            &:before {
+                position: absolute;
+                top: calc(150px - 50px - 25px);
+                left: 13px;
+                color: #fff;
+                text-shadow: #000 0px 0px 4px;
+                font-size: 50px;
+            }
+            
+            thead {
+                display: none;
+            }
+            
+            tbody {
+                position: static;
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+                box-sizing: border-box;
+                background-color: var(--secondary);
+            }
+            
+            div {
+                position: static;
+            }
 		}
 
 		&.interstate > .category-list {
@@ -133,10 +142,18 @@
 	&[class*='category-general'],
 	&[class*='category-technical'],
 	&[class*='category-announcements'] {
-		.link-bottom-line,
-		.topic-item-stats {
-			border-left: 4px solid #97d9ff;
-			padding-left: 4px;
-		}
+		.link-bottom-line, .topic-item-stats {
+            border-left: 4px solid #FFA76D;
+            padding-left: 4px;
+        }
 	}
 }
+
+// .tag-paid .link-top-line:before {
+//     content: '$';
+//     color: #fff;
+//     background-color: #070;
+//     border-radius: 2px;
+//     padding: 0px 5px;
+//     margin-right: 5px;
+// }
