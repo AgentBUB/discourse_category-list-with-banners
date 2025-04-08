@@ -17,6 +17,7 @@ export default class CategorySorter extends Component {
 
 		// Parse list-type mapping from settings
 		const groupMapping = {};
+		console.log(this.siteSettings.group_slug_mapping);
 		(this.siteSettings.group_slug_mapping || []).forEach((entry) => {
 			const [group, ruleRaw] = entry.split(';');
 
