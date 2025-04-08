@@ -1,17 +1,9 @@
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
-import { scheduleOnce } from '@ember/runloop';
 import { service } from '@ember/service';
 
 export default class CategorySorter extends Component {
 	@service siteSettings;
 
-	constructor() {
-		super(...arguments);
-		scheduleOnce('afterRender', this, this.sortAndInject);
-	}
-
-	@action
 	sortAndInject() {
 		const categories = this.args.categories || [];
 
