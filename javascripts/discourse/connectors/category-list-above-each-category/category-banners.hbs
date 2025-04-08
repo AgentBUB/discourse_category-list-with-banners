@@ -1,3 +1,7 @@
+{{log @outletArgs}}
+
+<div class="debug">{{@outletArgs.categories.length}} categories found</div>
+
 <div class="category-thing core">
   {{categories-only categories=(filter-core @outletArgs.categories) latestTopicOnly=true showTopics=true}}
 </div>
