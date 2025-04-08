@@ -1,8 +1,11 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { scheduleOnce } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 export default class CategorySorter extends Component {
+	@service siteSettings;
+
 	constructor() {
 		super(...arguments);
 		scheduleOnce('afterRender', this, this.sortAndInject);
@@ -21,14 +24,13 @@ export default class CategorySorter extends Component {
 			rowMap.set(id, row);
 		});
 
-		const groupMapping = {
-			core: 'bacta',
-			togr: 'togr',
-			'apps-appeals': ['app', 'appeal'],
-			dev: 'dev',
-			private: ['staff', 'forums-staff'],
-			closed: ['closed', 'ban', 'blacklist'],
-		};
+		let groupMapping;
+		try {
+			groupMapping = JSON.parse(this.siteSettings.group_slug_mapping);
+		} catch (e) {
+			console.error('Invalid group_slug_mapping JSON:', e);
+			groupMapping = {};
+		}
 
 		const containers = {};
 

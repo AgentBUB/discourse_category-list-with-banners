@@ -1,0 +1,12 @@
+group_slug_mapping:
+  default: |
+    {
+      "core": "bacta",
+      "togr": "togr",
+      "apps-appeals": ["app", "appeal"],
+      "dev": "dev",
+      "private": "pri",
+      "closed": ["closed", "ban", "blacklist"]
+    }
+  type: string
+  description: 'JSON mapping of group keys to slug prefixes'
