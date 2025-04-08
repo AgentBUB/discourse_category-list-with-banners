@@ -4,8 +4,6 @@ registerUnbound("filter-core", (categories) =>
   categories.filter((a) => a.slug.match(/^bacta-/))
 );
 
-// registerUnbound("filter-interstate", ...)
-
 registerUnbound("filter-togr", (categories) =>
   categories.filter((a) => a.slug.match(/^togr-/i))
 );
