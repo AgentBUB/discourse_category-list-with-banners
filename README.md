@@ -1,11 +1,11 @@
 # Category List with Banners
-A Discourse theme component that adds banners to the default category page styles *Categories Only* and *Categories With Featured Topics*.
 
+A Discourse theme component that adds banners to the default category page styles _Categories Only_ and _Categories With Featured Topics_.
 
-Orginal Creator: https://meta.discourse.org/u/godgutten
+### This version is made for https://forums.bactanetwork.com
 
-Orignal Thread: https://meta.discourse.org/t/how-do-i-add-category-banners/136898/10
-
-
-### This version is modified and made for https://forums.bactanetwork.com
 Feel free to fork and use as you'd like.
+
+### Credits
+
+This is a very very heavily modified version to work with new Discourse updated, but the originals creator is: https://meta.discourse.org/u/godgutten
